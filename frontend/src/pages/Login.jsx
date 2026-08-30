@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../context/useAuth";
 
 const Login = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -32,6 +34,8 @@ const Login = () => {
       );
 
       setMessage(data.message || "Login successful!");
+
+      navigate("/dashboard");
     } catch (error) {
       setError(
         error.response?.data?.message ||
@@ -41,46 +45,74 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login to SkillSphere</h1>
+    <main className="auth-page">
+      <section className="auth-card">
+        <div className="auth-header">
+          <p className="eyebrow">SKILLSPHERE</p>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
+          <h1>Welcome back</h1>
 
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            required
-          />
+          <p>
+            Sign in to continue building your career readiness
+            profile.
+          </p>
         </div>
 
-        <div>
-          <label>Password</label>
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <label>
+            Email
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </label>
 
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Enter your password"
-            required
-          />
+          <label>
+            Password
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter your password"
+              required
+            />
+          </label>
+
+          <button type="submit" className="auth-button">
+            Login
+          </button>
+        </form>
+
+        {message && (
+          <p className="auth-success">
+            {message}
+          </p>
+        )}
+
+        {error && (
+          <p className="auth-error">
+            {error}
+          </p>
+        )}
+
+        <div className="auth-footer">
+          <span>New to SkillSphere?</span>
+          <button
+            type="button"
+            className="auth-link"
+            onClick={() => navigate("/register")}
+          >
+            Create an account
+          </button>
         </div>
-
-        <button type="submit">
-          Login
-        </button>
-      </form>
-
-      {message && <p>{message}</p>}
-
-      {error && <p>{error}</p>}
-    </div>
+      </section>
+    </main>
   );
 };
 
-export default Login;      
+export default Login;

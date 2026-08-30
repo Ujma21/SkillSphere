@@ -64,13 +64,13 @@ body {
 h1,
 h2 {
   font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+  font-weight: 600;
+  color: #25204b;
 }
 
 h1 {
   font-size: 56px;
-  letter-spacing: -1.68px;
+  letter-spacing: -1.68px;   
   margin: 32px 0;
   @media (max-width: 1024px) {
     font-size: 36px;

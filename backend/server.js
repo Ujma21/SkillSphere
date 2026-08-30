@@ -12,6 +12,7 @@ const portfolioRoutes = require("./src/routes/portfolioRoutes");
 const recruiterRoutes = require("./src/routes/recruiterRoutes");
 const adminRoutes = require("./src/routes/adminRoutes");
 const jobPortalRoutes = require("./src/routes/jobPortalRoutes");
+const resumeRoutes = require("./src/routes/resumeRoutes");
 const app = express();
 
 app.use(cors());
@@ -25,6 +26,7 @@ app.use("/api/portfolio", portfolioRoutes);
 app.use("/api/recruiter", recruiterRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/jobs", jobPortalRoutes);
+app.use("/api/resume", resumeRoutes);
 
 app.get("/", (req, res) => {
   res.json({

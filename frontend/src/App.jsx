@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Portfolio from "./pages/Portfolio";
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import ResumeBuilder from "./pages/ResumeBuilder";
 
 function App() {
   return (
@@ -17,7 +18,15 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/portfolio/:userId" element={<Portfolio />} />
         <Route path="/recruiter" element={<ProtectedRoute allowedRoles={["recruiter"]}><RecruiterDashboard /></ProtectedRoute>} />
-        <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin"]}><AdminDashboard /></ProtectedRoute>} />
+       <Route
+  path="/resume"
+  element={
+    <ProtectedRoute allowedRoles={["student"]}>
+      <ResumeBuilder />
+    </ProtectedRoute>
+  }
+/>
+       <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin"]}><AdminDashboard /></ProtectedRoute>} />
        <Route
   path="/dashboard"
   element={
