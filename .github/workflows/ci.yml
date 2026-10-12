@@ -36,3 +36,8 @@ jobs:
 
       - name: Build frontend
         run: npm run build
+        
+      - name: RepoPilot controlled failure test
+        run: |
+          echo "ModuleNotFoundError: No module named 'repopilot_test_missing'"
+          exit 1
