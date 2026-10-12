@@ -2,8 +2,9 @@
 name: SkillSphere CI
 
 on:
+  
   push:
-    branches: ["main", "master"]
+    branches: ["main", "master", "repopilot-ci-test"]
   pull_request:
     branches: ["main", "master"]
   workflow_dispatch:
@@ -36,7 +37,7 @@ jobs:
 
       - name: Build frontend
         run: npm run build
-        
+
       - name: RepoPilot controlled failure test
         run: |
           echo "ModuleNotFoundError: No module named 'repopilot_test_missing'"
